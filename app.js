@@ -2,12 +2,11 @@ new Vue({
   el: "#app",
   data: {
     attackQuotes: ["Player wears a mask", "Player wear gloves", "Player perform social distance"],
-    initHealth: 100,
     covidHealth: 100,
     playerHealth: 100,
     isGameRunning: false,
-    canHeal: false,
     canSpecialAttack: false,
+    iterationsUntilSpecialAttack: 3,
     actionLogs: []
   },
   methods: {
@@ -19,11 +18,16 @@ new Vue({
     },
     attack: function() {
       this.attackTurn(2, 10)
+      this.iterateSpecialAttack()
     },
     specialAttack: function() {
+      this.iterateSpecialAttack()
       this.attackTurn(10, 17)
+      this.canSpecialAttack = false
+      this.iterationsUntilSpecialAttack = 3
     },
     heal: function() {
+      this.iterateSpecialAttack()
       if (this.playerHealth <= 90)
         this.playerHealth += 10
       else
@@ -38,6 +42,7 @@ new Vue({
         this.writteAction(true, "You washed your hands and run safe from COVID!!")
         this.isGameRunning = false
       } else {
+        this.iterateSpecialAttack()
         this.writteAction(false, "Oh no, COVID catched you hugging your friend and doesn't let you go!")
         this.covidAttack()
       }
@@ -84,6 +89,13 @@ new Vue({
         isPlayer: isPlayerText,
         text: text
       })
+    },
+    iterateSpecialAttack: function() {
+      if (this.iterationsUntilSpecialAttack > 0) {
+        this.iterationsUntilSpecialAttack -= 1
+      } else {
+        this.canSpecialAttack = true
+      }
     }
   }
 })

@@ -33,7 +33,8 @@
     <section class="row controls" v-else>
         <div class="small-12 columns">
             <button id="attack" @click="attack">Attack</button>
-            <button id="special-attack" @click="specialAttack">Special attack</button>
+            <button :class="{'special-attack': canSpecialAttack, 'special-attack-blocked': !canSpecialAttack}"
+             @click="specialAttack" :disabled="!canSpecialAttack">Special attack</button>
             <button id="heal" @click="heal">Heal</button>
             <button id="run" @click="run">Run!</button>
         </div>
