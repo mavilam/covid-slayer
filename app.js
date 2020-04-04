@@ -75,12 +75,14 @@ new Vue({
     },
     checkIfGameFinished: function() {
       if (this.playerHealth <= 0) {
+        this.playerHealth = 0
         this.actionLogs = [{
           isPlayer: false,
           text: "You lose 😷"
         }]
         this.isGameRunning = false
       } else if (this.covidHealth <= 0) {
+        this.covidHealth = 0
         this.actionLogs = [{
           isPlayer: true,
           text: "You won 🎉"
