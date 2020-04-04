@@ -74,11 +74,16 @@ button {
     background-color: #CF8590;
 }
 
-#special-attack {
+.special-attack-blocked {
+    background-color: #ffe7ca;
+    color: #e59d47;
+}
+
+.special-attack {
     background-color: #ffaf4f;
 }
 
-#special-attack:hover {
+.special-attack:hover {
     background-color: #ff9a2b;
 }
 
