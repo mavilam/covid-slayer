@@ -22,7 +22,7 @@ new Vue({
     },
     specialAttack: function() {
       if (this.iterationsUntilSpecialAttack > 0) {
-        this.writteAction(true, "You have to wait 3 turns in the pharmacy line to buy soap for your hands")
+        this.writteAction(true, "You have to wait 3 turns figthing against COVID in the pharmacy line to buy soap for your hands")
       } else {
         this.iterateSpecialAttack()
         this.attackTurn(10, 17)
@@ -31,13 +31,13 @@ new Vue({
       }
     },
     heal: function() {
-      this.iterateSpecialAttack()
-      if (this.playerHealth <= 90)
-        this.playerHealth += 10
+      const healQuantity = this.calculateRandomFromInterval(3, 10)
+      if (this.playerHealth + healQuantity <= 100)
+        this.playerHealth += healQuantity
       else
         this.playerHealth = 100
 
-      this.writteAction(true, "Yeah, you put your mask on")
+      this.writteAction(true, `Yeah, you put your mask on. ${healQuantity} units of life more!`)
 
       this.covidAttack()
     },
