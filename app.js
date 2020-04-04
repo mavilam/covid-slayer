@@ -42,7 +42,7 @@ new Vue({
       this.covidAttack()
     },
     run: function() {
-      if (Math.random() * 10 > 5) {
+      if (Math.random() * 10 > 7) {
         this.writteAction(true, "You washed your hands and run safe from COVID!!")
         this.isGameRunning = false
       } else {
@@ -57,7 +57,7 @@ new Vue({
       this.checkIfGameFinished()
     },
     covidAttack: function() {
-      let damageCovid = this.calculateRandomFromInterval(4, 10)
+      let damageCovid = this.calculateRandomFromInterval(5, 12)
       this.playerHealth -= damageCovid
       this.writteAction(false, `COVID made ${damageCovid} damage to player`)
     },
@@ -78,14 +78,14 @@ new Vue({
         this.playerHealth = 0
         this.actionLogs = [{
           isPlayer: false,
-          text: "You lose 😷"
+          text: "You are so sick that you have to lay on bed for 15 days 😷"
         }]
         this.isGameRunning = false
       } else if (this.covidHealth <= 0) {
         this.covidHealth = 0
         this.actionLogs = [{
           isPlayer: true,
-          text: "You won 🎉"
+          text: "You beat COVID!! 🎉 But, for your safety go home"
         }]
         this.isGameRunning = false
       }
